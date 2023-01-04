@@ -1,16 +1,16 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Job, category
+from .models import Job
 
 
 def all_jobs(request):
-    jobs=Job.objects.all()
-    return render(request,'index.html',{'objects':jobs})
-    pass
+    jobs = Job.objects.all()
+    context = {'jobs': jobs}
+    return render(request, 'job/job_list.html', context)
 
 
 def job_details(request, job_id):
-    details=Job.objects.get(id=job_id)
-    return render(request,'job_details.html',{'obj':details})
-
+    job = Job.objects.get(id=job_id)
+    context = {'job': job}
+    return render(request, 'job/job_details.html', context)
