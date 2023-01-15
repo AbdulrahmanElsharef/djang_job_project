@@ -6,12 +6,17 @@ from django.db import models
 JOB_TYPE = (('full time', 'full time'), ('part time', 'part time'))
 
 
+def upload_img(instance, filename):
+    img_name, img_exct = filename.split(".")
+    return f"jobs/{instance.id}.{img_exct}"
+
+
 class Job (models.Model):
     title = models.CharField(max_length=200)
     # LOCATION
     job_type = models.CharField(max_length=15, choices=JOB_TYPE)
     description = models.TextField(max_length=500)
-    image = models.ImageField(upload_to='jobs',)
+    image = models.ImageField(upload_to=upload_img,)
     published_at = models.DateTimeField(auto_now=True)
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
