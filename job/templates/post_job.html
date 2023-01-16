@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>{{jobs.count}} + Jobs Available</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{add}}
+
+    <input type="submit" value="Post Job">
+
+</form>
+{% endblock body %}
