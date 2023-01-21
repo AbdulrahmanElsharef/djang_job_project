@@ -24,7 +24,7 @@ class Job (models.Model):
     experience = models.IntegerField(default=1)
     category = models.ForeignKey(
         'category', on_delete=models.CASCADE, related_name='category')
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(blank=True, null=True)
 
     def __str__(self):
         return self.title

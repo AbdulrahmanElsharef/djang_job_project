@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block body %}
 <!-- bradcam_area  -->
 <div class="bradcam_area bradcam_bg_1">
@@ -13,11 +14,14 @@
     </div>
 </div>
 <!--/ bradcam_area  -->
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{add}}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form add %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Add Job</button>
+        {% endbuttons %}
+    </form>
+</div>
 
-    <input type="submit" value="Post Job">
-
-</form>
 {% endblock body %}

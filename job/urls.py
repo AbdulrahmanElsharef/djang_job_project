@@ -1,10 +1,11 @@
 
 from django.urls import path
-from .import views
+from .views import all_jobs, post_job, job_details, Edit_job, del_job
 
 urlpatterns = [
-    path('', views.all_jobs),
-    path('<slug:job_slug>', views.job_details),
-    path('<slug:job_slug>/edit', views.Edit_job),
-    path('<slug:job_slug>/del', views.del_job),
+    path('jobs', all_jobs),
+    path('jobs/add', post_job),
+    path('jobs/<slug:job_slug>', job_details),
+    path('jobs/<slug:job_slug>/edit', Edit_job),
+    path('jobs/<slug:job_slug>/del', del_job),
 ]
