@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 # from django.core.paginator import Paginator
-from .forms import ApplyForm
+from .forms import ApplyForm,JobForm
 
 # Create your views here.
 from .models import Job, Apply_job
@@ -30,17 +30,17 @@ def job_details(request, job_slug):
     return render(request, 'job_details.html', context)
 
 
-# def post_job(request):
-#     if request.method == 'POST':
-#         form = JobForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             # f = form.save(commit=False)
-#             # f.author = request.user
-#             form.save()
-#     else:
-#         form = JobForm()
-#     context = {"add": form}
-#     return render(request, 'post_job.html', context)
+def post_job(request):
+    if request.method == 'POST':
+        form = JobForm(request.POST, request.FILES)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.user = request.user
+            f.save()
+    else:
+        form = JobForm()
+    context = {"add": form}
+    return render(request, 'post_job.html', context)
 
 
 def del_job(request, job_slug):
