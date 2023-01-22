@@ -1,9 +1,9 @@
 from django import forms
-from .models import Job
+from .models import Apply_job
 
 
-class JobForm(forms.ModelForm):
+class ApplyForm(forms.ModelForm):
 
     class Meta:
-        model = Job
-        exclude = ('slug',)
+        model = Apply_job
+        exclude = ('job',)
