@@ -13,7 +13,8 @@ def upload_img(instance, filename):
 
 
 class Job (models.Model):
-    user=models.ForeignKey(User,related_name='job_user',on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, related_name='job_user', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     # LOCATION
     job_type = models.CharField(max_length=15, choices=JOB_TYPE)
@@ -42,14 +43,19 @@ class category(models.Model):
         return self.name
 
 
+
+
 class Apply_job(models.Model):
     job = models.ForeignKey(
         'Job', on_delete=models.CASCADE, related_name='Job')
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
     site = models.URLField()
+    img=models.ImageField(upload_to='Apply_job/')
     cv = models.FileField(upload_to='Apply_job/')
     cover = models.TextField(max_length=1000)
+    Apply_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
+

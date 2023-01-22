@@ -113,14 +113,7 @@
                 <h4>Job Listing</h4>
               </div>
               <div class="col-md-6">
-                <div class="serch_cat d-flex justify-content-end">
-                  <select>
-                    <option data-display="Most Recent">Most Recent</option>
-                    <option value="1">Marketer</option>
-                    <option value="2">Wordpress</option>
-                    <option value="4">Designer</option>
-                  </select>
-                </div>
+
               </div>
             </div>
           </div>
@@ -158,18 +151,7 @@
                     </a>
                     <a href="/jobs/{{job.slug}}" class="boxed-btn3">Apply Now</a>
                   </div>
-                  <div class="apply_now">
-                    <a class="heart_mark" href="#">
-                      <i class="fa fa-heart"></i>
-                    </a>
-                    <a href="/jobs/{{job.slug}}/edit" class="boxed-btn3">Edit job</a>
-                  </div>
-                  <div class="apply_now">
-                    <a class="heart_mark" href="#">
-                      <i class="fa fa-heart"></i>
-                    </a>
-                    <a href="/jobs/{{job.slug}}/del" class="boxed-btn3">delete job</a>
-                  </div>
+
                   <div class="date">
                     <p>Date line: {{job.published_at | date:'d b Y'}}</p>
                   </div>
