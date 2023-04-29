@@ -7,6 +7,7 @@ django.setup()
 
 from faker import Faker
 import random
+import string
 from board.models import *
 from blog.models import *
 from django.contrib.auth.models import User
@@ -17,7 +18,6 @@ from django.contrib.auth.models import User
 # def seed_Category(n):
 #     fake=Faker()
 #     CAT=('Creative','Design','Marketing','Administration','Teaching' , 'Education','Engineering','Software','Web','Telemarketing')
-#     # images=['2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpeg','9.jpg','10.jpg','11.png','12.png','13.jpeg','14jpeg']
 #     for _ in range(n):
 #         Category.objects.create(
 #             name=CAT[random.randint(0,9)],
@@ -85,30 +85,53 @@ from django.contrib.auth.models import User
 
 # seed_job(500)
 
-# def seed_ProductImage(n):
+
+# def seed_Candidates(n):
 #     fake=Faker()
-#     images=['2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpeg','9.jpg','10.jpg','11.png','12.png','13.jpeg','14jpeg']
+#     IMAGE=['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png']
 #     for _ in range(n):
-#         ProductImage.objects.create(
-#             product=Product.objects.get(id=random.randint(1,999)),
-#             image=f"product_images/{images[random.randint(1,12)]}"
+#         Candidates.objects.create(
+#         job=Job.objects.get(id=random.randint(1,499)),
+#         name=fake.name(),
+#         email= f"{fake.name()}_{str(random.randint(1975,2002))}@gmail.com".lower(),
+#         image=f"Candidates/{IMAGE[random.randint(0,9)]}",
+#         linkedin='https://www.linkedin.com/',
+#         cv="Candidates/0911-learning-django.pdf",
+#         cover=fake.text(max_nb_chars=1000),
 #         )
-#     print(f"{n} Images seed ")
+#     print(f"{n} Candidates seed ")
+
+# seed_Candidates(100)
 
 
-# def seed_ProductReview(n):
+# def seed_Post(n):
 #     fake=Faker()
+#     # IMAGE=['post_1.png','post_2.png','post_3.png','post_4.png','post_5.png','post_6.png','post_7.png','post_8.png','post_9.png','post_10.png']
 #     for _ in range(n):
-#         ProductReview.objects.create(
-#             user=User.objects.get(id=1),
-#             product=Product.objects.get(id=random.randint(1,999)),
-#             rate=random.randint(0,5),
-#             review=fake.text(max_nb_chars=500),
+#         Post.objects.create(
+#         # author=User.objects.get(id=1),
+#         # title=f'{fake.name()} Post',
+#         # subtitle=fake.text(max_nb_chars=150),
+#         # article=fake.text(max_nb_chars=2500),
+#         # image=f"posts/{IMAGE[random.randint(0,9)]}",
+#         # category=Category.objects.get(id=random.randint(1,19)),
 #         )
-#     print(f"{n} Review seed ")
+#     print(f"{n} Post seed ")
+
+# seed_Post(100)
+
+
+def seed_Review(n):
+    fake=Faker()
+    for _ in range(n):
+        Review.objects.create(
+            post=Post.objects.get(id=random.randint(1,99)),            
+            author=User.objects.get(id=1),
+            review=fake.text(max_nb_chars=300),
+        )
+    print(f"{n} Review seed ")
+    
+seed_Review(300)
 
 
 
-# seed_brand(100)
-# seed_product(1000)
-# seed_ProductImage(5000)

@@ -66,7 +66,7 @@ class Candidates(models.Model):
     email=models.CharField(_("email"), max_length=100)
     image=models.ImageField(_("image"), upload_to='Candidates')
     linkedin=models.URLField(_("linkedin"), max_length=100)
-    cv=models.FileField(_("cv"), upload_to=None, max_length=200)
+    cv=models.FileField(_("cv"), upload_to='cv', max_length=200)
     cover=models.TextField(_("cover"),max_length=1000)
     applied_at=models.DateTimeField(_("applied_at"), default=timezone.now)
     
