@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
-from board.models import Job
-from board.forms import JobForm
+from board.models import Job,Candidate
+from board.forms import JobForm,CandidateForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -26,8 +26,18 @@ def Job_detail(request, slug):
     # Retrieve a specific record by ID
     job = get_object_or_404(Job, slug=slug)
     # Render a template with the record
-    return render(request, 'board/job_detail.html', {'job': job})
-
+    if request.method == 'POST':
+        form = CandidateForm(request.POST, request.FILES)
+        if form.is_valid():
+            Candidate = form.save(commit=False)
+            Candidate.job=job
+            Candidate.save()
+            return redirect('board:job_detail',slug=job.slug)
+    # Render a form for creating a new record
+    else:
+        form = CandidateForm()
+    context={'job':job,'form':form}
+    return render(request, 'board/job_detail.html', context)
 # CBV
 
 
@@ -44,7 +54,7 @@ def Job_create(request):
     if request.method == 'POST':
         form = JobForm(request.POST, request.FILES)
         if form.is_valid():
-            job = form.save()
+            job = form.save(commit=False)
             job.user = request.user
             job.save()
             return redirect('board:job_detail', slug=job.slug)
@@ -73,7 +83,7 @@ def Job_update(request, slug):
     if request.method == 'POST':
         form = JobForm(request.POST, request.FILES, instance=job)
         if form.is_valid():
-            job = form.save()
+            job = form.save(commit=False)
             job.user = request.user
             job.save()
             return redirect('board:job_detail', slug=job.slug)
@@ -115,3 +125,5 @@ class JobDelete(DeleteView):
     model = Job
     template_name = 'board/job_delete.html'
     success_url = reverse_lazy('board:job_list')
+
+

@@ -60,8 +60,7 @@ class Job(models.Model):
 
 
 class Candidate(models.Model):
-    user = models.OneToOneField(User, verbose_name=_(
-        "user"), on_delete=models.CASCADE, related_name='user_Candidates')
+
     job = models.ForeignKey(
         Job, related_name='job_Candidates', on_delete=models.CASCADE)
     name = models.CharField(_("name"), max_length=100)
