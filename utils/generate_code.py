@@ -8,4 +8,4 @@ def generate_code(n=8):
     return code 
 
 
-print(f'{slugify("web design")}-category-{generate_code()[:4]}')
+# print(f'{slugify("web design")}-category-{generate_code()[:4]}')

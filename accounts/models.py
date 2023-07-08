@@ -18,6 +18,9 @@ class Profile(models.Model):
     cv=models.FileField(_("cv"), upload_to='cv', max_length=200)
     phone=models.CharField(max_length=20)
 
+    def __str__(self):
+        return str(self.user)
+    
 @receiver(post_save,sender=User)
 def create_profile(sender,instance,created,**kwargs):
     if created:

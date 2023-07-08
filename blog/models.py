@@ -16,16 +16,17 @@ class Post(models.Model):
     published_at=models.DateTimeField(_("published_at"), auto_now_add=True)
     category=models.ForeignKey(Category,related_name='post_Category', on_delete=models.SET_NULL,null=True,blank=True)
     article=models.TextField(_("article"),max_length=5000)
-    slug=models.SlugField(_("slug"),unique=True)
+    slug=models.SlugField(_("slug"),null=True,blank=True,unique=True)
 
     def __str__(self):
         return self.title
     
     def save(self, *args, **kwargs):
-        code=generate_code()[:4]
-        self.slug=f'{slugify(self.title)}-post-{code}'
+        self.slug=f'{slugify(self.title)}-post-{generate_code()[:4]}'
         super(Post, self).save(*args, **kwargs) # Call the real save() method
     
+    
+#_________________________________________________
 class Review(models.Model):
     post=models.ForeignKey(Post, verbose_name=_("post"),related_name='post_review', on_delete=models.CASCADE)
     author=models.ForeignKey(User, related_name='review_author', on_delete=models.SET_NULL,null=True,blank=True)

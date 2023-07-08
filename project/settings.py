@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'board',
     'blog',
     'settings',
+    'companies',
+    
 ]
 
 MIDDLEWARE = [
