@@ -5,17 +5,22 @@ from board.forms import JobForm, CandidateForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from .filters import JobFilter
+from django_filters.views import FilterView
 
 
 # ALL LIST FUNCTIONS  (1)
 def Job_list(request):
     # Retrieve all records from the database
     jobs = Job.objects.all()
+    myfilter = JobFilter(request.GET, queryset=jobs)
+    jobs = myfilter.qs
     paginator = Paginator(jobs, 2)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     # Render a template with the records
-    context = {'jobs': page_obj, 'count': Job.objects.all().count}
+    context = {'jobs': page_obj, 'count': Job.objects.all().count,
+               'myfilter': myfilter}
     return render(request, 'board/job_list.html', context)
 # CBV
 
@@ -24,8 +29,7 @@ class JobList(ListView):
     paginate_by = 4
     model = Job
     context_object_name = 'jobs'
-    extra_context={'count': Job.objects.all().count}
-    
+    extra_context = {'count': Job.objects.all().count}
 
 
 # ___________________________________________________
