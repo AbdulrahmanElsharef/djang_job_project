@@ -15,7 +15,7 @@ class Employer(models.Model):
     founded = models.DateField(_("founded"), auto_now=False, auto_now_add=False)
     location = models.CharField(_("location"), max_length=250)
     website = models.CharField(_("website"), max_length=150)
-    size = models.IntegerField(_("company size"))
+    size = models.CharField(_("company size"), max_length=100)
     Profile = models.TextField(_("company Profile"), max_length=1000)
     linkedin = models.CharField(_("linkedin"), max_length=100)
     slug = models.SlugField(_("slug"), null=True, blank=True, unique=True)
