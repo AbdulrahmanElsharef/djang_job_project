@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'settings',
     'companies',
     "bootstrap4",
+    'django_filters',
     
 ]
 

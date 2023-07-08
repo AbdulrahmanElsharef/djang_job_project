@@ -1,22 +1,32 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
-from board.models import Job,Candidate
-from board.forms import JobForm,CandidateForm
+from board.models import Job, Candidate
+from board.forms import JobForm, CandidateForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
 
 # ALL LIST FUNCTIONS  (1)
 def Job_list(request):
     # Retrieve all records from the database
     jobs = Job.objects.all()
+    paginator = Paginator(jobs, 2)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     # Render a template with the records
-    return render(request, 'board/job_list.html', {'jobs': jobs})
+    context = {'jobs': page_obj, 'count': Job.objects.all().count}
+    return render(request, 'board/job_list.html', context)
 # CBV
 
 
 class JobList(ListView):
+    paginate_by = 4
     model = Job
+    context_object_name = 'jobs'
+    extra_context={'count': Job.objects.all().count}
+    
+
 
 # ___________________________________________________
 # FUNCTIONS    (2)
@@ -30,13 +40,13 @@ def Job_detail(request, slug):
         form = CandidateForm(request.POST, request.FILES)
         if form.is_valid():
             Candidate = form.save(commit=False)
-            Candidate.job=job
+            Candidate.job = job
             Candidate.save()
-            return redirect('board:job_detail',slug=job.slug)
+            return redirect('board:job_detail', slug=job.slug)
     # Render a form for creating a new record
     else:
         form = CandidateForm()
-    context={'job':job,'form':form}
+    context = {'job': job, 'form': form}
     return render(request, 'board/job_detail.html', context)
 # CBV
 
@@ -125,5 +135,3 @@ class JobDelete(DeleteView):
     model = Job
     template_name = 'board/job_delete.html'
     success_url = reverse_lazy('board:job_list')
-
-
