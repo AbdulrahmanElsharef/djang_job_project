@@ -460,7 +460,7 @@ h3 {
 
 /* line 43, ../../Arafath/CL/December/235. Job board/HTML/scss/_btn.scss */
 .boxed-btn3:hover {
-  color: #00D363 !important;
+  color: rgb(78 169 219);
   border: 1px solid #00D363;
   background: transparent;
 }

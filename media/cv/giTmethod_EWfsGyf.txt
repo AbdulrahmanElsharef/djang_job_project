@@ -1,0 +1,33 @@
+install git
+new account github "user name @ email _pass"
+add git config:
+++++++++++++++
+git config --global user.name "user name"
+git config --global user.email email.com
+git config --list
+_________________________________________________
+git init          [create  new repo]
+git add file name
+git add . "for add in current file "
+git status "git situations"
+git commit -m "backup and update file"     [backup]
+git log               [Show backup@commits logs]
+git push "to github server"
+git pull "from github server
+__________________________________________________
+git branch "to know our branch"
+git checkout  "fom current branch"
+git checkout main
+git checkout -b branche name  "make new branch"
+github desktob
+Git Information MethodsGit Information MethodsGit Information MethodsWelcome to PYnative.com
+This is a sample.txt
+Line 3
+Line 4
+Line 5
+
+Welcome to PYnative.com
+This is a sample.txt
+Line 3
+Line 4
+Line 5
