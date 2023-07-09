@@ -3291,15 +3291,10 @@ h3 {
 /* line 32, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_list.scss */
 .job_listing_area .job_lists .single_jobs .jobs_left .thumb {
   float: left;
-  width: 82px;
-  height: 82px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 15px;
-  background: #F5F7FA;
-  margin-right: 25px;
-  border: 1px solid #F0F0F0;
+  width: auto;
+  height : auto;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 /* line 46, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_list.scss */

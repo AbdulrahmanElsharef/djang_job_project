@@ -15,7 +15,7 @@ def Job_list(request):
     jobs = Job.objects.all()
     myfilter = JobFilter(request.GET, queryset=jobs)
     jobs = myfilter.qs
-    paginator = Paginator(jobs, 2)
+    paginator = Paginator(jobs, 4)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     # Render a template with the records

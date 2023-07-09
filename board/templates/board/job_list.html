@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap4 %}
 {% block content %}
 
@@ -31,8 +32,8 @@
                             </div>
                         </form>
                     </div>
-                   
-                    
+
+
                 </div>
             </div>
             <div class="col-lg-9">
@@ -44,14 +45,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="serch_cat d-flex justify-content-end">
-                                    <!-- <select>
-                                            <option value="1">Category</option>
-                                            {% for cat in jobs %}
-                                            <option >{{cat.category}}</option>
-                                            <h3>{{cat.name}}</h3>
-                                            {% endfor %}
 
-                                        </select> -->
                                 </div>
                             </div>
                         </div>
@@ -64,9 +58,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="single_jobs white-bg d-flex justify-content-between">
                                 <div class="jobs_left d-flex align-items-center">
-                                    <div class="thumb">
-                                        <img src="img/svg_icon/{{job.employer.icon.url}}" alt="">
-                                    </div>
+
                                     <div class="jobs_conetent">
                                         <a href="{% url 'board:job_detail' job.slug %}">
                                             <h4>{{job}}</h4>
@@ -87,7 +79,7 @@
 
                                     </div>
                                     <div class="date">
-                                        <p>Date line: {{job.published_at}}</p>
+                                        <p>Date line: {{job.published_at|date:'d-N-Y'}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +88,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <div >
+                            <div>
                                 <ul>
                                     {% if jobs.has_other_pages %}
                                     <ul class="pagination justify-content-center mb-4">

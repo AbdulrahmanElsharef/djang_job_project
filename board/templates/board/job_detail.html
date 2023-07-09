@@ -141,18 +141,20 @@
                 <div class="share_wrap d-flex">
                     <span>Share at:</span>
                     <ul>
-                        <li><a href="#"> <i class="fa fa-facebook"></i></a> </li>
-                        <li><a href="#"> <i class="fa fa-google-plus"></i></a> </li>
-                        <li><a href="#"> <i class="fa fa-twitter"></i></a> </li>
-                        <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
+                        <li><a href="https://www.facebook.com" target="_blank"> <i class="fa fa-facebook"></i></a> </li>
+                        <li><a href="https://www.google-plus.com" target="_blank"> <i class="fa fa-google-plus"></i></a>
+                        </li>
+                        <li><a href="https://www.twitter.com" target="_blank"> <i class="fa fa-twitter"></i></a> </li>
                     </ul>
 
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary"><a href="{% url 'board:job_update' job.slug %}" >update</a></button>
-                    <button type="submit" class="btn btn-danger"><a href="{% url 'board:job_delete' job.slug %}" >remove</a></button>
+                    <button type="submit" class="btn btn-primary"><a
+                            href="{% url 'board:job_update' job.slug %}">update</a></button>
+                    <button type="submit" class="btn btn-danger"><a
+                            href="{% url 'board:job_delete' job.slug %}">remove</a></button>
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -64,7 +64,7 @@ class Candidate(models.Model):
     job = models.ForeignKey(
         Job, related_name='job_Candidates', on_delete=models.CASCADE)
     name = models.CharField(_("name"), max_length=100)
-    email = models.CharField(_("email"), max_length=100)
+    email = models.EmailField(_("email"), max_length=254)
     image = models.ImageField(_("image"), upload_to='Candidates')
     linkedin = models.URLField(_("linkedin"), max_length=100)
     cv = models.FileField(_("cv"), upload_to='cv', max_length=200)
