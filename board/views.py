@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from .filters import JobFilter
 from django_filters.views import FilterView
-
+from django.contrib.auth.decorators import login_required
 
 # ALL LIST FUNCTIONS  (1)
 def Job_list(request):
@@ -62,7 +62,7 @@ class JobDetail(DetailView):
 
 # FUNCTIONS    (3)
 
-
+@login_required
 def Job_create(request):
     # Handle form submission for creating a new record
     if request.method == 'POST':
@@ -88,6 +88,7 @@ class JobCreate(CreateView):
 
 # FUNCTIONS (4)
 
+@login_required
 
 def Job_update(request, slug):
     # Retrieve a specific record by ID
@@ -119,6 +120,7 @@ class JobUpdate(UpdateView):
 
 # FUNCTIONS  (5)
 
+@login_required
 
 def Job_delete(request, slug):
     # Retrieve a specific record by ID

@@ -12,12 +12,13 @@ class Profile(models.Model):
     image = models.ImageField(upload_to='profile',null=True,blank=True,default='default.png')
     code = models.CharField(max_length=8,default=generate_code)
     job = models.CharField(max_length=50)
-    name=models.CharField(_("name"), max_length=100)
-    email=models.CharField(_("email"), max_length=100)
     linkedin=models.URLField(_("linkedin"), max_length=100)
     cv=models.FileField(_("cv"), upload_to='cv', max_length=200)
-    phone=models.CharField(max_length=20)
-
+    phone=models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    region = models.CharField(max_length=50)
+    street = models.CharField(max_length=50)
+    apartment = models.CharField(max_length=50)
     def __str__(self):
         return str(self.user)
     
@@ -29,31 +30,8 @@ def create_profile(sender,instance,created,**kwargs):
         )
 
 
-    
-phone_number = (
-    ('Home','Home'),
-    ('Work','Work')
-)    
-    
-    
-class UserNumbers(models.Model):
-    user = models.ForeignKey(User, related_name='user_phones', on_delete=models.CASCADE)
-    number = models.CharField(max_length=20)
-    type = models.CharField(max_length=12 , choices=phone_number)
-    
 
 
-address_choices = (
-    ('Home','Home'),
-    ('Office','Office'),
-)    
-    
-    
-class UserAddress(models.Model):
-    user = models.ForeignKey(User, related_name='User_Address', on_delete=models.CASCADE)
-    type = models.CharField(max_length=12 , choices=address_choices)
-    city = models.CharField(max_length=20)
-    region = models.CharField(max_length=20)
-    street = models.CharField(max_length=20)
-    apartment = models.CharField(max_length=20)
+
+
 

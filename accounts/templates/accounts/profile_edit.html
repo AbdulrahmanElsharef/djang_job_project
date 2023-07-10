@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="bradcam_text">
-                    <h4>User SignUp</h4>
+                    <h4>job_update</h4>
                 </div>
             </div>
         </div>
@@ -17,18 +17,19 @@
 </div>
 <!--/ bradcam_area  -->
 
+
+
 <div class="container">
-
-
-    <form method="post" >
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" value="SignUp" class="btn btn-primary btn-lg btn-block">
-
+    <form method="POST" enctype="multipart/form-data" class="apply_job_form white-bg">
+        <h3>Profile details</h3>
+        {% csrf_token%}
+        {% bootstrap_form user_Form %}
+        {% bootstrap_form profile_form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Update</button>
+        {% endbuttons %}
     </form>
-
-    {# Assumes you setup the password_reset view in your URLconf #}
-
 </div>
+
 
 {% endblock content %}
