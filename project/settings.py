@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'board',
     'blog',
-    'settings',
+    'settings', 
     'companies',
     "bootstrap4",
     'django_filters',
@@ -140,4 +140,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = '/accounts/profile'
+LOGIN_REDIRECT_URL = '/jobs'
+AUTHENTICATION_BACKENDS = ('accounts.backend.EmailBackend',)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nour70331@gmail.com' # Enter your email here
+EMAIL_HOST_PASSWORD = 'uibadzkmabzvyjla' # Enter your password here
+# DEFAULT_FROM_EMAIL = 'nour70331@gmail.com' # Enter your email here

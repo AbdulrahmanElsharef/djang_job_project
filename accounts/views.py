@@ -79,3 +79,10 @@ def MyProfileEdit(request):
         profile_form=ProfileForm(instance=profile)
     return render (request,'accounts/profile_edit.html',{'user_Form':user_Form,'profile_form':profile_form})
         
+        
+from django.contrib.auth.views import PasswordResetView
+
+# class CustomPasswordResetView(PasswordResetView):
+#     subject_template_name = 'password_reset_subject.txt'
+#     email_template_name = 'password_reset_email.html'
+#     success_url = 'accounts/ password_reset/done'
