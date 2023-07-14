@@ -18,7 +18,7 @@
 <!--/ bradcam_area  -->
 
 <div class="container">
-    {% if form.errors %}
+    <!-- {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
 
@@ -29,9 +29,9 @@
     {% else %}
     <p>Please login to see this page.</p>
     {% endif %}
-    {% endif %}
+    {% endif %} -->
 
-    <form method="post" action="{% url 'login' %}">
+    <form method="post" >
         {% csrf_token %}
         {% bootstrap_form form %}
         <input type="submit" value="login" class="btn btn-primary btn-lg btn-block">

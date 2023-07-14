@@ -22,26 +22,54 @@
             <div class="col-lg-12">
                 <div class="job_sumary">
                     <div class="col-lg-12">
-                        <div class="summery_header" >
-                            <h1>Profile</h1>
+                        <div class="summery_header">
+                            <h1>{{profile.user.username}}</h1>
                         </div>
-                        <div class="summery_header" >
-                            <img src="" alt="">
+                        <div class="avatar" style=" width: 100px;height: 100px; margin-top: 100px; margin-left:30px">
+                            <img src="{{profile.image.url}}" alt="Profile Picture" style="width: 50%; height: 50%;object-fit: cover;border-radius: 75%;">
                         </div>
-                </div>
+                    </div>
                     <div class="job_content">
                         <ul>
-                            <h3>First name : <span></span></h3>
-                            <h3>Last name : <span></span></h3>
-                            <h3>Email address  : <span></span></h3>
-                            <h3>linkedin  : <span></span></h3>
-                            <h3>job : <span></span></h3>
-                            <h3>phone  : <span></span></h3>
-                            <h3>city  : <span></span></h3>
-                            <h3>region  : <span></span></h3>
-                            <h3>street  : <span></span></h3>
-                            <h3>apartment  : <span></span></h3>
-
+                            <div class="summery_header">
+                                <h1>First name :</h1>
+                                <h3>{{profile.user.first_name}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>Last name :</h1>
+                                <h3>{{profile.user.last_name}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>linkedin :</h1>
+                                <h3>{{profile.linkedin}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>job :</h1>
+                                <h3>{{profile.job}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>phone :</h1>
+                                <h3>{{profile.phone}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>city :</h1>
+                                <h3>{{profile.city}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>region :</h1>
+                                <h3>{{profile.region}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>street :</h1>
+                                <h3>{{profile.street}}</h3>
+                            </div>
+                            <div class="summery_header">
+                                <h1>apartment :</h1> <span style="display: in;">{{profile.apartment}}</span>
+                            </div>
+                            <div class="summery_header">
+                                <button class="btn btn-primary btn-lg btn-block"><a
+                                        href="{% url 'accounts:profile_edit' %}">Edit Profile</a></button>
+                            </div>
                         </ul>
                     </div>
                 </div>
@@ -49,4 +77,23 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="profile" style=" display: flex;
+align-items: center;
+margin-bottom: 20px;">
+    <div class="avatar" style=" width: 100px;
+    height: 100px;
+    margin-right: 20px;">
+        <img src="path/to/profile-picture.jpg" alt="Profile Picture" style="width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;">
+    </div>
+    <div class="info" style="padding: 10px;">
+        <h2>John Doe</h2>
+        <p>Email: john.doe@example.com</p>
+        <p>Phone: 555-555-5555</p>
+        <p>Address: 123 Main St, Anytown, USA</p>
+    </div>
+</div> -->
 {% endblock content %}
