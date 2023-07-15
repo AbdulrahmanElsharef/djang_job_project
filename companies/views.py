@@ -2,31 +2,45 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from companies.models import Employer as EM
 from companies.forms import EmployerForm
+from companies.filters import EmployerFilter
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
+from board.models import Job
 
 
 # ALL LIST FUNCTIONS  (1)
 def Employer_list(request):
     # Retrieve all records from the database
-    employers = EM.objects.all()
+    Employers = EM.objects.all()
+    myfilter = EmployerFilter(request.GET, queryset=Employers)
+    Employers = myfilter.qs
+    paginator = Paginator(Employers, 4)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     # Render a template with the records
-    return render(request, 'companies/employer_list.html', {'employers': employers})
+    context = {'Employers': page_obj, 'count': EM.objects.all().count,
+               'myfilter': myfilter}
+    return render(request, 'companies/employer_list.html', context)
 # CBV
 
 
 class EmployerList(ListView):
+    paginate_by = 4
     model = EM
+    context_object_name = 'Employers'
+    extra_context = {'count': EM.objects.all().count}
 
-# ___________________________________________________
+# _______________________________________________
 # FUNCTIONS    (2)
 
 
 def Employer_detail(request, slug):
     # Retrieve a specific record by ID
     employer = get_object_or_404(EM, slug=slug)
+    jobs=Job.objects.all().filter(employer=employer)
     # Render a template with the record
-    return render(request, 'companies/employer_detail.html', {'employer': employer})
+    return render(request, 'companies/employer_detail.html', {'employer': employer,'jobs':jobs})
 
 # CBV
 

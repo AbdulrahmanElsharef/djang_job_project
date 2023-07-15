@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h4>job_Delete</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="container"   >
+    <form method="POST" >
+        <h2>job delete</h2>
+        <h4>Are You Sure To Remove Job </h4>
+        {% csrf_token%}
+
+        <button type="submit" class="btn btn-danger"> Yes--Remove</button>
+
+    </form>
+</div>
+
+{% endblock content %}

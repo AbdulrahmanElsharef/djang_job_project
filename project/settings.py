@@ -148,5 +148,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nour70331@gmail.com' # Enter your email here
-EMAIL_HOST_PASSWORD = 'uibadzkmabzvyjla' # Enter your password here
+EMAIL_HOST_PASSWORD = 'xesaffcwwtkvnwag'
+# ' # Enter your password here
 # DEFAULT_FROM_EMAIL = 'nour70331@gmail.com' # Enter your email here
