@@ -52,6 +52,9 @@ class EmployerDetail(DetailView):
 
 # FUNCTIONS    (3)
 
+def PostJob_choice(request):
+    return render(request,'companies/choice.html',{})
+
 
 def Employer_create(request):
     # Handle form submission for creating a new record
@@ -61,7 +64,7 @@ def Employer_create(request):
             employer = form.save()
             employer.user = request.user
             employer.save()
-            return redirect('companies:Employer_detail', slug=employer.slug)
+            return redirect( 'board:job_create')
     # Render a form for creating a new record
     else:
         form = EmployerForm()
