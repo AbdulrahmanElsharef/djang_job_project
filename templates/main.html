@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h4>Welcome To Our Job Board</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+
+<!-- job_searcing_wrap  -->
+<div class="job_searcing_wrap overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1 col-md-6">
+                <div class="searching_text">
+                    <h1>Looking for a Job?</h1>
+                    <p> For Employee & Job Seeker </p>
+                    <a href="{% url 'board:job_list' %}" class="btn btn-secondary">Browse Job</a>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 col-md-6">
+                <div class="searching_text">
+                    <h1>Looking for a Expert?</h1>
+                    <p> For Employer & Company </p>
+                    <a href="{% url 'companies:Employer_create' %}" class="btn btn-secondary">Post a Job</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- job_searcing_wrap end  -->
+
+{% endblock content %}

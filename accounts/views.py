@@ -33,7 +33,7 @@ def signUp(request):
             password=form.cleaned_data['password1']
             user = authenticate(request,username=username, password=password)
             login(request,user)
-            return redirect ('accounts:profile')
+            return redirect ('main')
     else:
         form=SignUpForm()
     

@@ -7,6 +7,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from board.models import Job
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
 # ALL LIST FUNCTIONS  (1)
@@ -52,10 +55,9 @@ class EmployerDetail(DetailView):
 
 # FUNCTIONS    (3)
 
-def PostJob_choice(request):
-    return render(request,'companies/choice.html',{})
-
-
+# def PostJob_choice(request):
+#     return render(request,'companies/choice.html',{})
+@login_required
 def Employer_create(request):
     # Handle form submission for creating a new record
     if request.method == 'POST':
@@ -64,7 +66,7 @@ def Employer_create(request):
             employer = form.save()
             employer.user = request.user
             employer.save()
-            return redirect( 'board:job_create')
+            return HttpResponseRedirect(reverse_lazy('companies:Employer_detail', slug=employer.slug))
     # Render a form for creating a new record
     else:
         form = EmployerForm()
@@ -76,7 +78,7 @@ class EmployerCreate(CreateView):
     model = EM
     form_class = EmployerForm
     template_name = 'companies/employer_create.html'
-    success_url = reverse_lazy('companies:Employer_list')
+    success_url = reverse_lazy('companies:Employer_detail')
 # ___________________________________________________
 
 # FUNCTIONS (4)

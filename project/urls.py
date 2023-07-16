@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .home import main
 
 
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls',namespace='accounts')),
     path('admin/', admin.site.urls),
+    path('', main,name='main'),
     path('', include('board.urls',namespace='board')),
     path('', include('blog.urls',namespace='blog')),
     path('', include('companies.urls',namespace='companies')),
