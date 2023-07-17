@@ -57,29 +57,31 @@ class EmployerDetail(DetailView):
 
 # def PostJob_choice(request):
 #     return render(request,'companies/choice.html',{})
+# FUNCTIONS    (3)
+
 @login_required
 def Employer_create(request):
     # Handle form submission for creating a new record
     if request.method == 'POST':
         form = EmployerForm(request.POST, request.FILES)
         if form.is_valid():
-            employer = form.save()
-            employer.user = request.user
-            employer.save()
-            return HttpResponseRedirect(reverse_lazy('companies:Employer_detail', slug=employer.slug))
+            Employer = form.save(commit=False)
+            Employer.user = request.user
+            Employer.save()
+            return redirect('companies:Employer_detail', slug=Employer.slug)
     # Render a form for creating a new record
     else:
         form = EmployerForm()
-        return render(request, 'companies/employer_create.html', {'form': form})
+    return render(request, 'companies/Employer_create.html', {'form': form})
 # CBV
 
 
 class EmployerCreate(CreateView):
-    model = EM
+    model = Job
     form_class = EmployerForm
-    template_name = 'companies/employer_create.html'
-    success_url = reverse_lazy('companies:Employer_detail')
-# ___________________________________________________
+    template_name = 'companies/Employer_create.html'
+    success_url = reverse_lazy('board:job_list')
+# ___________________________________
 
 # FUNCTIONS (4)
 
@@ -98,7 +100,8 @@ def Employer_update(request, slug):
     # Render a form for updating the employer
     else:
         form = EmployerForm(instance=employer)
-        return render(request, 'companies/employer_update.html', {'form': form})
+        
+    return render(request, 'companies/employer_update.html', {'form': form})
 
 # CBV
 
