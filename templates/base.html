@@ -28,7 +28,7 @@
                                         <ul id="navigation">
                                             <li><a href="index.html">home</a></li>
                                             <li><a href="{% url 'board:job_list' %}">Browse Jobs</a></li>
-                                            <li><a href="jobs.html">Employers</a></li>
+                                            <li><a href="{% url 'companies:employer_list' %}">Employers</a></li>
                                             <li><a href="jobs.html">Blogs</a></li>
                                             <li><a href="jobs.html">Candidates</a></li>
                                             <li><a href="contact.html">Contact</a></li>
@@ -39,11 +39,11 @@
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
                                     <div class="phone_num d-none d-xl-block">
-                                        <a class="btn btn-danger" href="{% url 'logout' %}">logout</a>
+                                        <!-- <a class="btn btn-danger" href="{% url 'logout' %}">logout</a> -->
                                         <a class="btn btn-success" href="{% url 'accounts:signup' %}">signup</a>
                                     </div>
                                     <div class="phone_num d-none d-xl-block">
-                                        <a class="btn btn-secondary" href="{% url 'login' %}">login</a>
+                                        <a class="btn btn-primary" href="{% url 'login' %}">login</a>
                                     </div>
                                     <div class="phone_num d-none d-xl-block">
                                         <a class="btn btn-warning" href="#">Post a Job</a>
