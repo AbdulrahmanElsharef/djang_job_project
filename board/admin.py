@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Category,Job,Candidate
+from .models import Category,Job
 
 
 admin.site.register(Category)
@@ -10,4 +10,3 @@ admin.site.register(Category)
 #     list_filter=('job_type','salary', 'company','category')
 #     search_fields=('title','description','category')
 admin.site.register(Job)
-admin.site.register(Candidate)

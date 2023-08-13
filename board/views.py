@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
-from board.models import Job, Candidate
-from board.forms import JobForm, CandidateForm
+from board.models import Job
+from board.models import  Candidate
+from board.forms import JobForm
+from board.forms import CandidateForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
@@ -30,7 +32,7 @@ class JobList(ListView):
     model = Job
     context_object_name = 'jobs'
     extra_context = {'count': Job.objects.all().count}
-
+    filterset_class =JobFilter
 
 # ___________________________________________________
 # FUNCTIONS    (2)
@@ -62,7 +64,7 @@ class JobDetail(DetailView):
 
 # FUNCTIONS    (3)
 
-@login_required
+# @login_required
 def Job_create(request):
     # Handle form submission for creating a new record
     if request.method == 'POST':
@@ -88,7 +90,7 @@ class JobCreate(CreateView):
 
 # FUNCTIONS (4)
 
-@login_required
+# @login_required
 
 def Job_update(request, slug):
     # Retrieve a specific record by ID
@@ -120,7 +122,7 @@ class JobUpdate(UpdateView):
 
 # FUNCTIONS  (5)
 
-@login_required
+# @login_required
 
 def Job_delete(request, slug):
     # Retrieve a specific record by ID

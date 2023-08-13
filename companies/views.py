@@ -33,7 +33,7 @@ class EmployerList(ListView):
     model = EM
     context_object_name = 'Employers'
     extra_context = {'count': EM.objects.all().count}
-
+    filterset_class=EmployerFilter
 # _______________________________________________
 # FUNCTIONS    (2)
 
@@ -55,11 +55,8 @@ class EmployerDetail(DetailView):
 
 # FUNCTIONS    (3)
 
-# def PostJob_choice(request):
-#     return render(request,'companies/choice.html',{})
-# FUNCTIONS    (3)
 
-@login_required
+# @login_required
 def Employer_create(request):
     # Handle form submission for creating a new record
     if request.method == 'POST':

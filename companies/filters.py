@@ -6,4 +6,4 @@ class EmployerFilter(django_filters.FilterSet):
     name=django_filters.CharFilter(lookup_expr='icontains')
     class Meta:
         model = Employer
-        fields=['name','industry','Profile']
+        fields=['company','industry','company_detail']

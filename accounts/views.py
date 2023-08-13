@@ -40,22 +40,6 @@ def signUp(request):
     return render(request,'accounts/signup.html',{'form':form})
 
 
-# def signup(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             username = form.cleaned_data['username']
-#             password=form.cleaned_data['password1']
-#             email=form.cleaned_data['email']
-#             user = authenticate(username=username, password=password,email=email)
-#             login(request,user)
-#             return redirect ('accounts:profile')
-#     else:
-#         form = UserCreationForm()
-#     return render(request,'accounts/signup.html', {'form': form})
-# # 
-
 
 def MyProfile(request):
     profile=Profile.objects.get(user=request.user)

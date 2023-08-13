@@ -5,8 +5,7 @@ class JobForm(forms.ModelForm):
     class Meta:
         model = Job
         fields = '__all__'
-        exclude=['slug','publisher']
-        
+        exclude=['slug','author']
         
 class CandidateForm(forms.ModelForm):
     class Meta:

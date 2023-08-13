@@ -6,6 +6,7 @@ from django.utils import timezone
 from utils.generate_code import generate_code
 from django.urls import reverse
 from companies.models import Employer
+from accounts.models import Profile
 
 
 class Category(models.Model):
@@ -30,8 +31,8 @@ JOB_TYPE = (('Full_Time', 'Full_Time'), ('Part_Time',
 
 
 class Job(models.Model):
-    publisher = models.ForeignKey(User, verbose_name=_(
-        "publisher"), on_delete=models.SET_NULL, null=True, blank=True, related_name='job_author')
+    author = models.ForeignKey(User, verbose_name=_(
+        "author"), on_delete=models.SET_NULL, null=True, blank=True, related_name='job_author')
     name = models.CharField(_("job"), max_length=100)
     employer = models.ForeignKey(Employer, verbose_name=_(
         "employer"), on_delete=models.SET_NULL, related_name='job_employer', null=True, blank=True)
@@ -59,21 +60,19 @@ class Job(models.Model):
 # __________________________________________________
 
 
-class Candidate(models.Model):
 
-    job = models.ForeignKey(
-        Job, related_name='job_Candidates', on_delete=models.CASCADE)
-    name = models.CharField(_("name"), max_length=100)
-    email = models.EmailField(_("email"), max_length=254)
-    image = models.ImageField(_("image"), upload_to='Candidates')
-    linkedin = models.URLField(_("linkedin"), max_length=100)
-    cv = models.FileField(_("cv"), upload_to='cv', max_length=200)
+class Candidate(models.Model):
+    job = models.CharField(_("job"),max_length=100)
+    phone = models.CharField(_("phone"),max_length=100)
+    address = models.CharField(_("address"),max_length=350)
+    linkedin = models.URLField(_("linkedin"), max_length=200)
+    cv = models.FileField(_("cv"), upload_to='Candidate_cv', max_length=200)
     cover = models.TextField(_("cover"), max_length=1000)
     applied_at = models.DateTimeField(_("applied_at"), auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.job
 
-    def save(self, *args, **kwargs):
-        self.slug = f'{slugify(self.name)}-user-{generate_code()[:4]}'
-        super(Candidate, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.slug = f'{slugify(self.job)}-user-{generate_code()[:4]}'
+    #     super(Candidate, self).save(*args, **kwargs)
